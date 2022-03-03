@@ -2,47 +2,42 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>keycloak-experimental-parent</artifactId>
-        <groupId>org.keycloak.experimental</groupId>
-        <version>0.1-SNAPSHOT</version>
-    </parent>
+
+    <groupId>org.noderunners.keycloak</groupId>
+    <artifactId>lnurl-auth</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
     <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>lnurl-auth</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <version.keycloak>15.0.0</version.keycloak>
+        <version.keycloak>16.1.1</version.keycloak>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>fr.acinq.bitcoin</groupId>
+            <artifactId>bitcoin-kmp-jvm</artifactId>
+            <version>0.8.2</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.acinq.secp256k1</groupId>
+            <artifactId>secp256k1-kmp-jni-jvm</artifactId>
+            <version>0.6.1</version>
+        </dependency>
+
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>javase</artifactId>
             <version>3.2.1</version>
             <scope>provided</scope>
         </dependency>
-
-        <dependency>
-            <groupId>fr.acinq.bitcoin</groupId>
-            <artifactId>bitcoin-kmp-jvm</artifactId>
-            <version>0.8.2</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>fr.acinq.secp256k1</groupId>
-            <artifactId>secp256k1-kmp-jni-jvm</artifactId>
-            <version>0.6.1</version>
-            <scope>provided</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-core</artifactId>
-            <version>15.0.0</version>
+            <version>${version.keycloak}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -62,6 +57,24 @@
             <artifactId>keycloak-services</artifactId>
             <version>${version.keycloak}</version>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-multipart-provider</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-core</artifactId>
+            <version>4.7.0.Final</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+            <version>4.5.9.Final</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -80,6 +93,19 @@
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

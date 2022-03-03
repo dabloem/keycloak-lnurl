@@ -1,1 +1,1 @@
-org.keycloak.experimental.lnurl.LnUrlAuthAutenticatorFactory
+org.noderunners.authentication.lnurl.LnUrlAuthAutenticatorFactory
