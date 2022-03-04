@@ -1,0 +1,6 @@
+{
+  "themes": [{
+    "name" : "noderunners",
+    "types": [ "login" ]
+  }]
+}

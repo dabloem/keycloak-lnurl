@@ -17,3 +17,4 @@ services:
     volumes:
       - ./keycloak:/opt/jboss/keycloak/standalone/deployments
       - ./src/main/keycloak/disable-theme-cache.cli:/opt/jboss/startup-scripts/disable-theme-cache.cli
+#      - ./theme/noderunners:/opt/jboss/keycloak/themes/noderunners

@@ -9,6 +9,8 @@ import org.keycloak.models.KeycloakSessionFactory;
 import org.keycloak.provider.ProviderConfigProperty;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class LnUrlAuthAutenticatorFactory implements AuthenticatorFactory {
@@ -34,7 +36,7 @@ public class LnUrlAuthAutenticatorFactory implements AuthenticatorFactory {
 
     @Override
     public boolean isConfigurable() {
-        return false;
+        return true;
     }
 
     @Override
@@ -54,7 +56,11 @@ public class LnUrlAuthAutenticatorFactory implements AuthenticatorFactory {
 
     @Override
     public List<ProviderConfigProperty> getConfigProperties() {
-        return new ArrayList<>();
+        ProviderConfigProperty onColor = new ProviderConfigProperty("onColor", "RGB on-color", "Format: 255,109,1", "String", "0,0,0");
+        ProviderConfigProperty offColor = new ProviderConfigProperty("offColor", "RGB off-color", "Format: 255,109,1", "String", "255,255,255");
+        ProviderConfigProperty imageSize = new ProviderConfigProperty("size", "Image size", "Size in pixels", "String", "200");
+
+        return Arrays.asList(onColor, offColor, imageSize);
     }
 
     @Override

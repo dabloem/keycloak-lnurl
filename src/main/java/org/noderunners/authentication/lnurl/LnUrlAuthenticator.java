@@ -3,6 +3,7 @@ package org.noderunners.authentication.lnurl;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageConfig;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import fr.acinq.bitcoin.Bech32;
@@ -19,6 +20,7 @@ import org.keycloak.models.UserModel;
 import org.noderunners.authentication.lnurl.resource.LNUrlResource;
 
 import javax.ws.rs.core.Response;
+import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URI;
@@ -66,10 +68,11 @@ public class LnUrlAuthenticator extends AbstractUsernameFormAuthenticator implem
 
             String lnurlAuth = toBech32(URI.create(link));
 
-            int imageSize = 240;
+            int imageSize = Integer.valueOf(context.getAuthenticatorConfig().getConfig().get("size"));
             BitMatrix matrix = new MultiFormatWriter().encode(lnurlAuth, BarcodeFormat.QR_CODE, imageSize, imageSize);
+            MatrixToImageConfig conf = new MatrixToImageConfig(new Color(255, 153, 51).getRGB(), Color.BLACK.getRGB());
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            MatrixToImageWriter.writeToStream(matrix, "png", bos);
+            MatrixToImageWriter.writeToStream(matrix, "png", bos, conf);
             String image = Base64.getEncoder().encodeToString(bos.toByteArray()); // base64 encode
             context.form().setAttribute("qr", "data:image/png;base64," + image);
         } catch (WriterException | IOException e) {
