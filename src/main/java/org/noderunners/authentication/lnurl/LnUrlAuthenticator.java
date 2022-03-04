@@ -51,7 +51,6 @@ public class LnUrlAuthenticator extends AbstractUsernameFormAuthenticator implem
         new Random().nextBytes(random);
         String hex = Hex.encodeHexString(random);
 
-//        URI uri = KeycloakUriBuilder.fromUri(URI.create(context.getUriInfo().getBaseUri() + "/realms/" + context.getRealm().getName() + "/lnurl")).build();
         URI uri = KeycloakUriBuilder.fromUri(context.getUriInfo().getBaseUri())
                 .path("realms")
                 .path(context.getRealm().getName())
@@ -75,6 +74,7 @@ public class LnUrlAuthenticator extends AbstractUsernameFormAuthenticator implem
             MatrixToImageWriter.writeToStream(matrix, "png", bos, conf);
             String image = Base64.getEncoder().encodeToString(bos.toByteArray()); // base64 encode
             context.form().setAttribute("qr", "data:image/png;base64," + image);
+            context.form().setAttribute("lnurlAuth", lnurlAuth);
         } catch (WriterException | IOException e) {
             throw new RuntimeException(e);
         }

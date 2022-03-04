@@ -11,7 +11,7 @@
             <div id="content">
                 <div class="wrap">
                     <p>Scan the QR code to login</p>
-                    <a id="qrcode">
+                    <a id="qrcode" target="_blank" href="lightning:${lnurlAuth}">
                         <img src="${qr}">
                     </a>
 
