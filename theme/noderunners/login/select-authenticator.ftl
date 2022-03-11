@@ -37,9 +37,11 @@
                                             </div>
                                         </div>
                                         <div class="${properties.kcSelectAuthListItemFillClass!}"></div>
+                                        <#if false>
                                         <div class="${properties.kcSelectAuthListItemArrowClass!}">
                                             <i class="${properties.kcSelectAuthListItemArrowIconClass!}"></i>
                                         </div>
+                                        </#if>
                                     </div>
                                 </#list>
                                 <input type="hidden" id="authexec-hidden-input" name="authenticationExecution" />

@@ -13,7 +13,7 @@ services:
       - "DEBUG_PORT=*:8787"
       - "DEBUG=true"
 #      - "KEYCLOAK_IMPORT=/opt/jboss/keycloak/standalone/deployments/realm-export.json"
-#    entrypoint: "/opt/keycloak/bin/kc.sh start-dev"
+    command: ["-b", "0.0.0.0", "-Dkeycloak.profile=preview"]
     volumes:
       - ./keycloak:/opt/jboss/keycloak/standalone/deployments
       - ./src/main/keycloak/disable-theme-cache.cli:/opt/jboss/startup-scripts/disable-theme-cache.cli

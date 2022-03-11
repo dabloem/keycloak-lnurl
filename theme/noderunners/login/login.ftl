@@ -13,7 +13,7 @@
                     <form id="kc-form-login" onsubmit="login.disabled = true; return true;" action="${url.loginAction}" method="post" class="voucherForm">
                         <p></p>
                         <div class="row p-3">
-                            <div class="col-md-6" style="padding: 15px">
+                            <div class="col-md-8" style="padding: 15px">
 
                                 <fieldset>
                                     <input type="text" name="username" value="" id="username" placeholder="Email" class="form-control valid" aria-invalid="false" value="${(login.username!'')}" style="background: whitesmoke;">

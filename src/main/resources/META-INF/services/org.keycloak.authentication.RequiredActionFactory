@@ -1,1 +1,2 @@
 org.noderunners.authentication.lnurl.UsernameMustBeEnteredActionFactory
+org.noderunners.authentication.lnurl.action.NodeVerifierAction

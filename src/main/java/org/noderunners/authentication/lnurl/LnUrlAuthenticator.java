@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class LnUrlAuthenticator extends AbstractUsernameFormAuthenticator implements Authenticator {
 
@@ -68,8 +69,11 @@ public class LnUrlAuthenticator extends AbstractUsernameFormAuthenticator implem
             String lnurlAuth = toBech32(URI.create(link));
 
             int imageSize = Integer.valueOf(context.getAuthenticatorConfig().getConfig().get("size"));
+            Color colorOn = convertRGB(context.getAuthenticatorConfig().getConfig().get("onColor"));
+            Color colorOff = convertRGB(context.getAuthenticatorConfig().getConfig().get("offColor"));
+
             BitMatrix matrix = new MultiFormatWriter().encode(lnurlAuth, BarcodeFormat.QR_CODE, imageSize, imageSize);
-            MatrixToImageConfig conf = new MatrixToImageConfig(new Color(255, 153, 51).getRGB(), Color.BLACK.getRGB());
+            MatrixToImageConfig conf = new MatrixToImageConfig(colorOn.getRGB(), colorOff.getRGB());
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             MatrixToImageWriter.writeToStream(matrix, "png", bos, conf);
             String image = Base64.getEncoder().encodeToString(bos.toByteArray()); // base64 encode
@@ -87,6 +91,13 @@ public class LnUrlAuthenticator extends AbstractUsernameFormAuthenticator implem
         context.challenge(response);
 
         context.getAuthenticationSession().setAuthNote("k1", hex);
+    }
+
+    private Color convertRGB(String colorString) {
+        Integer[] colors = Stream.of(colorString.split(","))
+                .map(s -> Integer.valueOf(s))
+                .toArray(Integer[]::new);
+        return new Color(colors[0], colors[1], colors[2]);
     }
 
     public static boolean verify(String msg, String key, String sig) {

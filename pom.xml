@@ -27,6 +27,12 @@
             <artifactId>secp256k1-kmp-jni-jvm</artifactId>
             <version>0.6.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.lightningj</groupId>
+            <artifactId>lightningj</artifactId>
+            <version>0.14.1-Beta</version>
+        </dependency>
+
 
         <dependency>
             <groupId>com.google.zxing</groupId>
