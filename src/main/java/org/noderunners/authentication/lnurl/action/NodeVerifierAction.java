@@ -80,13 +80,11 @@ public class NodeVerifierAction implements RequiredActionProvider, RequiredActio
         if (!verification) {
             context.form().setError("Verification failed.");
             requiredActionChallenge(context);
-            return;
         } else {
             context.getUser().setSingleAttribute("node", pubkey);
+            context.success();
             logger.infof("Node verification success for %s", pubkey);
         }
-
-        context.success();
     }
 
     @Override
