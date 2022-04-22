@@ -81,6 +81,11 @@ public class NodeVerifierBean extends AbstractUserProfileBean {
             public boolean isRequired() {
                 return true;
             }
+
+            @Override
+            public String getAutocomplete() {
+                return "off";
+            }
         };
 
         return Arrays.asList(message, node, signature);

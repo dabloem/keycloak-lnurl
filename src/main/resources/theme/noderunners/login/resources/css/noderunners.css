@@ -64,6 +64,7 @@ a:focus, a:hover {
     border: 1px solid #FD6D00;
     background: #121212;
     color:#FD6D00;
+    float: right;
 }
 
 .btn-secondary:hover{
@@ -361,6 +362,22 @@ h4,.h4{
 .clear{clear:both;}
 header{padding:3em 0;}
 section{position:relative;}
+
+.login-pf-signup {
+    margin: 20px -40px -30px;
+}
+
+.pf-c-clipboard-copy .pf-c-button {
+    background: black;
+}
+
+.fa-copy {
+    background: black;
+}
+#kc-info-wrapper {
+    font-size: 13px;
+    background-color: inherit;
+}
 
 #logo {
     height: 40px;

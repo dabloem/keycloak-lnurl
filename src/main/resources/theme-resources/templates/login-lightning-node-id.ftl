@@ -12,12 +12,13 @@
                             <div class="pf-c-clipboard-copy">
                                 <div class="pf-c-clipboard-copy__group">
                                     <input
-                                            class="pf-c-form-control"
+                                            class="${properties.kcInputClass!}"
                                             readonly
                                             type="text"
                                             value="${login.message}"
                                             id="message"
                                             aria-label="Copyable input"
+                                            style="background: inherit;"
                                     />
                                     <button
                                             class="pf-c-button pf-m-control"
@@ -25,7 +26,7 @@
                                             aria-label="Copy to clipboard"
                                             id="basic-readonly-copy-button"
                                             aria-labelledby="basic-readonly-copy-button basic-readonly-text-input">
-                                        <i class="fas fa-copy" aria-hidden="true"></i>
+                                        <i class="fa fa-copy" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </div>

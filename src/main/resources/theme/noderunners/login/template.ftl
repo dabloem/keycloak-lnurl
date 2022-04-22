@@ -66,8 +66,8 @@
     <section class="box-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-5 col-md-offset-3">
-                    <header style="background: black; padding: 25px;">
+                <div class="col-md-5 col-md-offset-4">
+                    <header id="kc-content-wrapper" style="background: black; padding: 25px;">
                         <#nested "form">
 
                         <#if auth?has_content && auth.showTryAnotherWayLink() && showAnotherWayIfPresent>
@@ -217,13 +217,6 @@
                         </form>
                     </#if>
 
-                    <#if displayInfo>
-                        <div id="kc-info" class="${properties.kcSignUpClass!}">
-                            <div id="kc-info-wrapper" class="${properties.kcInfoAreaWrapperClass!}">
-                                <#nested "info">
-                            </div>
-                        </div>
-                    </#if>
                 </div>
             </div>
 

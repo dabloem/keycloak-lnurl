@@ -3,7 +3,6 @@
     <#if section = "header">
         ${msg("loginAccountTitle")}
     <#elseif section = "form">
-
         <div class="login">
             <h1 class="h3">Login</h1>
 
@@ -16,8 +15,8 @@
                             <div class="col-md-8" style="padding: 15px">
 
                                 <fieldset>
-                                    <input type="text" name="username" value="" id="username" placeholder="Email" class="form-control valid" aria-invalid="false" value="${(login.username!'')}" style="background: whitesmoke;">
-                                    <input type="password" name="password" value="" id="password" placeholder="Password" class="form-control valid" aria-invalid="false" style="background: whitesmoke">
+                                    <input type="text" name="username" value="" id="username" placeholder="Email" class="form-control valid" aria-invalid="false" value="${(login.username!'')}" >
+                                    <input type="password" name="password" value="" id="password" placeholder="Password" class="form-control valid" aria-invalid="false" >
                                 </fieldset>
 
 
@@ -52,5 +51,15 @@
 
             </div>
         </div>
+   <#elseif section="info">
+        <#if realm.password && realm.registrationAllowed && !registrationDisabled??>
+            <div id="kc-registration-container">
+                <div id="kc-registration">
+                    <span>${msg("noAccount")}
+                        <a tabindex="6" href="${url.registrationUrl}">${msg("doRegister")}</a>
+                    </span>
+                </div>
+            </div>
+        </#if>
    </#if>
 </@layout.registrationLayout>

@@ -20,7 +20,7 @@
                 <form id="kc-select-credential-form" action="${url.loginAction}" method="post" class="voucherForm">
                     <p></p>
                     <div class="row p-3">
-                        <div class="col-md-6" style="padding: 15px">
+                        <div class="col-md-12" style="padding: 15px">
                             <div class="${properties.kcSelectAuthListClass!}">
                                 <#list auth.authenticationSelections as authenticationSelection>
                                     <div class="${properties.kcSelectAuthListItemClass!}" onclick="fillAndSubmit('${authenticationSelection.authExecId}')">
