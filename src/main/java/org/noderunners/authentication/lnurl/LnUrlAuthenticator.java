@@ -9,6 +9,7 @@ import com.google.zxing.common.BitMatrix;
 import fr.acinq.bitcoin.Bech32;
 import fr.acinq.secp256k1.Secp256k1;
 import org.apache.commons.codec.binary.Hex;
+import org.jboss.logging.Logger;
 import org.keycloak.authentication.AuthenticationFlowContext;
 import org.keycloak.authentication.AuthenticationFlowError;
 import org.keycloak.authentication.Authenticator;
@@ -66,6 +67,7 @@ public class LnUrlAuthenticator extends AbstractUsernameFormAuthenticator implem
                 .build()
                 .toString();
 
+            Logger.getLogger(this.getClass().getName()).info("ln-url link:" + link);
             String lnurlAuth = toBech32(URI.create(link));
 
             int imageSize = Integer.valueOf(context.getAuthenticatorConfig().getConfig().get("size"));

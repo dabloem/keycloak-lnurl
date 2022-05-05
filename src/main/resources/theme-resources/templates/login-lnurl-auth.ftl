@@ -3,22 +3,23 @@
     <#if section = "title">
         ${msg("loginTitle",(realm.displayName!''))}
     <#elseif section = "header">
-        ${msg("loginTitleHtml",(realm.displayNameHtml!''))?no_esc}
+        Sign in to your account
+<#--        ${msg("loginTitleHtml",(realm.displayNameHtml!''))?no_esc}-->
     <#elseif section = "form">
         <#if realm.password>
         <div class="login">
-            <h1 class="h3">LNURL login</h1>
+<#--            <h1 class="h3">LNURL login</h1>-->
             <div id="content">
-                <div class="wrap">
-                    <p>Scan the QR code to login</p>
+                <div class="wrap" style="text-align: center">
+                    <p>Scan the <b>LNURL QR code</b> to login</p>
                     <a id="qrcode" target="_blank" href="lightning:${lnurlAuth}">
                         <img src="${qr}">
                     </a>
 
                     <#if realm.rememberMe>
-                    <p style="padding-top: 10px;">
-                        <input tabindex="3" id="rememberMe" name="rememberMe" type="checkbox" checked> ${msg("rememberMe")}
-                    <p>
+                        <p style="padding-top: 10px; text-align: left">
+                            <input tabindex="3" id="rememberMe" name="rememberMe" type="checkbox" checked> ${msg("rememberMe")}
+                        <p>
                     </#if>
 
                     <form id="kc-form-login" class="${properties.kcFormClass!}" action="${url.loginAction}" method="post">
