@@ -217,6 +217,13 @@
                         </form>
                     </#if>
 
+                    <#if displayInfo>
+                        <div id="kc-info" class="${properties.kcSignUpClass!}">
+                            <div id="kc-info-wrapper" class="${properties.kcInfoAreaWrapperClass!}">
+                                <#nested "info">
+                            </div>
+                        </div>
+                    </#if>
                 </div>
             </div>
 
