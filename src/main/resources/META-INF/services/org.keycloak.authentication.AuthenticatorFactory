@@ -1,2 +1,1 @@
 org.noderunners.authentication.lnurl.LnUrlAuthAutenticatorFactory
-org.noderunners.authentication.lnurl.action.LNNodeAuthenticatorFactory

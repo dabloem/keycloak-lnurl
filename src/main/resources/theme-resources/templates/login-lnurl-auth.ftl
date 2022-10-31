@@ -42,7 +42,7 @@
                 var url = '${pollingUrl}'.replaceAll('amp;', '');
 
                 var refreshIntervalId = setInterval(function(){
-                    fetch(url) // Any output from the script will go to the "result" div
+                    fetch(url)
                     .then( (response) => {
                             if (response.ok) {
                                 clearInterval(refreshIntervalId);
