@@ -1,2 +1,6 @@
+/keycloak
 /target/
 *.iml
+/.idea/*
+/theme/.idea/*
+/dependency-reduced-pom.xml

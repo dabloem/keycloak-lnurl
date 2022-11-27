@@ -1,19 +1,23 @@
-FROM quay.io/keycloak/keycloak:16.1.1 as builder
+FROM maven:3.8.5-jdk-11 as builder
+WORKDIR /usr/src/lnurl-auth
 
-ENV KC_FEATURES=preview
-RUN /opt/jboss/tools/build-keycloak.sh
-RUN /opt/keycloak/bin/kc.sh build
+COPY pom.xml .
+COPY src/ ./src
 
-FROM quay.io/keycloak/keycloak:16.1.1
-COPY --from=builder /opt/keycloak/lib/quarkus/ /opt/keycloak/lib/quarkus/
-WORKDIR /opt/keycloak
-# for demonstration purposes only, please make sure to use proper certificates in production instead
-RUN keytool -genkeypair -storepass password -storetype PKCS12 -keyalg RSA -keysize 2048 -dname "CN=server" -alias server -ext "SAN:c=DNS:localhost,IP:127.0.0.1" -keystore conf/server.keystore
-ENV KEYCLOAK_ADMIN=admin
-ENV KEYCLOAK_ADMIN_PASSWORD=change_me
-# change these values to point to a running postgres instance
-ENV KC_DB_URL=<DBURL>
-ENV KC_DB_USERNAME=<DBUSERNAME>
-ENV KC_DB_PASSWORD=<DBPASSWORD>
-ENV KC_HOSTNAME=localhost:8443
-ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start"]
+RUN mvn clean install
+
+FROM quay.io/keycloak/keycloak:16.1.1 as final
+#WORKDIR /opt/jboss/keycloak
+ARG LNURL_JAR=lnurl-auth.jar
+
+ENV KEYCLOAK_USER=admin
+ENV KEYCLOAK_PASSWORD=admin
+
+COPY --from=builder /usr/src/lnurl-auth/target/${LNURL_JAR} /opt/jboss/keycloak/standalone/deployments/
+#COPY ./keycloak/realm-export.json /opt/jboss/keycloak/standalone/deployments
+
+# COPY ./update-startup.cli .
+
+# RUN bin/jboss-cli.sh --command="module add --name=org.keycloak.providers.lnurl-auth --resources=target/${LNURL_JAR} --dependencies=org.keycloak.keycloak-core,org.keycloak.keycloak-services,org.keycloak.keycloak-model-jpa,org.keycloak.keycloak-server-spi,org.keycloak.keycloak-server-spi-private,javax.ws.rs.api,javax.persistence.api,org.hibernate,org.javassist,org.liquibase" \
+#     && bin/jboss-cli.sh --file=./update-startup.cli \
+#     && rm -rf /opt/jboss/keycloak/standalone/configuration/standalone_xml_history
