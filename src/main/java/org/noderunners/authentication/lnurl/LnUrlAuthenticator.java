@@ -68,8 +68,8 @@ public class LnUrlAuthenticator extends AbstractUsernameFormAuthenticator implem
                 .toString();
 
             String lnurlAuth = toBech32(URI.create(link));
-            Logger.getLogger(this.getClass().getName()).info("ln-url");
-            Logger.getLogger(this.getClass().getName()).info("  link:" + link);
+//            Logger.getLogger(this.getClass().getName()).info("ln-url");
+//            Logger.getLogger(this.getClass().getName()).info("  link:" + link);
             Logger.getLogger(this.getClass().getName()).info("  bech32:" + lnurlAuth);
 
             int imageSize = Integer.valueOf(context.getAuthenticatorConfig().getConfig().get("size"));

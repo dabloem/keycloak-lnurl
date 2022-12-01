@@ -11,29 +11,17 @@ See [here](https://github.com/lnurl/luds/blob/legacy/lnurl-auth.md) for extensiv
 ## Feedback
 Authentication happens [LnUrlAuthenticator.class](src/main/java/org/noderunners/authentication/lnurl/LnUrlAuthenticator.java)
 
-the front-end polls for success on LNUrlResource url.
-```html
-        <script type="text/javascript">
-                var url = '${pollingUrl}'.replaceAll('amp;', '');
-
-                var refreshIntervalId = setInterval(function(){
-                    fetch(url)
-                    .then( (response) => {
-                            if (response.ok) {
-                                clearInterval(refreshIntervalId);
-                                console.log("POSTing kc-form-login");
-                                document.getElementById("kc-form-login").submit();
-                            }
-                        }
-                    )
-                }, 3000);
-            </script>
-```
-
-Please, any feedback is welcome!
-
 ## LNURL Overview
 ![Diagram showing interaction](img.png "Diagram showing interaction")
+
+
+## Settings
+Configure the QR-code image generation   
+![config](config.png)
+
+LN-Url requires https, therefor for testing purposes use ngrok or similar tools to proxy to your local environment.
+Set the frontend-url in the Real Settings | General tab to something like : https://[subdomain].ngrok.io/auth/ and set the Web Origins in the client settings to https://[subdomain].ngrok.io
+
 
 What users see:   
 ![keycloak login](login.png)

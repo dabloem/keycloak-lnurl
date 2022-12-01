@@ -58,7 +58,6 @@ public class NodeVerifierAction implements RequiredActionProvider, RequiredActio
                 .setAttribute("user", new ProfileBean(userCtx, formData))
                 .setAttribute("profile", new NodeVerifierBean(context.getUser(), formData, context.getSession()))
                 .createForm("verify-lightning-node-id.ftl");
-//                .createForm(Templates.getTemplate(LoginFormsPages.UPDATE_USER_PROFILE));
         context.challenge(response);
     }
 

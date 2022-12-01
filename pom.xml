@@ -5,7 +5,7 @@
 
     <groupId>org.noderunners.keycloak</groupId>
     <artifactId>lnurl-auth</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1</version>
 
     <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
@@ -96,9 +96,8 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <excludes>
-<!--                    <exclude>META-INF/jboss-deployment-structure.xml</exclude>-->
-                    <exclude>META-INF/keycloak-themes.json</exclude>
-                    <exclude>theme/**</exclude>
+<!--                    <exclude>META-INF/keycloak-themes.json</exclude>-->
+<!--                    <exclude>theme/**</exclude>-->
                 </excludes>
             </resource>
         </resources>

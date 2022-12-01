@@ -12,7 +12,7 @@ services:
 #      - "KEYCLOAK_LOGLEVEL=DEBUG"
       - "DEBUG_PORT=*:8787"
       - "DEBUG=true"
-      - "KEYCLOAK_IMPORT=/opt/jboss/keycloak/standalone/deployments/realm-export.json"
+#      - "KEYCLOAK_IMPORT=/opt/jboss/keycloak/standalone/deployments/realm-export.json"
     command: ["-b", "0.0.0.0", "-Dkeycloak.profile=preview"]
     volumes:
       - ./keycloak:/opt/jboss/keycloak/standalone/deployments
